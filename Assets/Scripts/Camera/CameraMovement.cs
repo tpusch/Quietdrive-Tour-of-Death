@@ -31,7 +31,7 @@ public class CameraMovement : MonoBehaviour {
         newPos.x = (player1.transform.position.x + player2.transform.position.x)/2;
         Debug.DrawLine(player1.transform.position, newPos);
         Debug.Log(newPos.x);
-        if (newPos.x > transform.position.x)
+        if (newPos.x != transform.position.x)
         {
             transform.position = newPos;
         }
