@@ -3,16 +3,16 @@ using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
 
-    public UnityStandardAssets._2D.PlatformerCharacter2D player1;
-    public UnityStandardAssets._2D.PlatformerCharacter2D player2;
+    public UnityStandardAssets._2D.PlatformerCharacter2D[] players;    
 
     Camera cam;
+
 
 	// Use this for initialization
 	void Start () {
         cam = GetComponent<Camera>();
         //TODO: Dynamically place border colliders        
-
+        
 	}
 	
 	// Update is called once per frame
@@ -24,13 +24,23 @@ public class CameraMovement : MonoBehaviour {
     /// <summary>
     /// Pans the camera based on the average position of the 2 players
     /// </summary>
-    //TODO: alter code to accept 1 - 4 players
+    //TODO: code accepts 1 or 2 players, not so well at 4
     void MovePosition()
     {
-        Vector3 newPos = transform.position; 
-        newPos.x = (player1.transform.position.x + player2.transform.position.x)/2;
-        Debug.DrawLine(player1.transform.position, newPos);
-        Debug.Log(newPos.x);
+        Vector3 newPos = transform.position;
+
+        float newX = 0.0f;
+        int numPlayers = 0;
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].isActiveAndEnabled)
+            {
+                newX += players[i].transform.position.x;
+                numPlayers++;
+            }
+        }
+        newPos.x = newX / numPlayers;
+
         if (newPos.x != transform.position.x)
         {
             transform.position = newPos;

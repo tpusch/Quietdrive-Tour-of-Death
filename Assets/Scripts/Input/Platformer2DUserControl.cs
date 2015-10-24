@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets._2D
 {
@@ -10,10 +9,12 @@ namespace UnityStandardAssets._2D
         protected PlatformerCharacter2D m_Character;
         protected bool m_Jump;
 
+        protected Combat combat;
 
         private void Awake()
         {
             m_Character = GetComponent<PlatformerCharacter2D>();
+            combat = GetComponent<Combat>();
         }
 
 
@@ -23,6 +24,10 @@ namespace UnityStandardAssets._2D
             {
                 // Read the jump input in Update so button presses aren't missed.
                 m_Jump = Input.GetButtonDown("Jump");
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && combat)
+            {
+                combat.Attack(transform.localScale.x);
             }
         }
 
