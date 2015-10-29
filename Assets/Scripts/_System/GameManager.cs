@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -14,9 +15,19 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     UnityStandardAssets._2D.PlatformerCharacter2D player1;
     [SerializeField]
-    UnityStandardAssets._2D.PlatformerCharacter2D player2;    
+    UnityStandardAssets._2D.PlatformerCharacter2D player2;
+
+    [SerializeField]
+    GameObject winPanel;
 
     int numPlayers;
+       
+    public static GameManager Instance{ get; private set;}
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
 	// Use this for initialization
 	void Start () 
@@ -43,4 +54,18 @@ public class GameManager : MonoBehaviour {
             piece.transform.SetParent(groundPieces.transform);
         }
     }
+
+    public void EndGame(bool win)
+    {
+        if (win)
+        {
+            winPanel.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+
+        }
+    }
+
 }
