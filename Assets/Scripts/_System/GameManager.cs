@@ -68,4 +68,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void Menu()
+    {
+        Application.LoadLevel("Menu");
+    }
+
 }

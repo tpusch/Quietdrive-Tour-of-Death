@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour {
     public void StartGame()
     {
         Application.LoadLevel("Game");
+        Time.timeScale = 1.0f;
     }
 
 }

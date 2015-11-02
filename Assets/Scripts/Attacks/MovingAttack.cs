@@ -5,6 +5,10 @@ public class MovingAttack : AttackObject {
 
     [SerializeField]
     float movementSpeed;
+    [SerializeField]
+    float verticalSpeed;
+    [SerializeField]
+    float rotationSpeed;
 
     Rigidbody2D physics;
     void Awake()
@@ -19,6 +23,8 @@ public class MovingAttack : AttackObject {
     {
         base.Start();
         physics.AddForce(transform.right * movementSpeed, ForceMode2D.Impulse);
+        physics.AddForce(transform.up * verticalSpeed, ForceMode2D.Impulse);
+        physics.AddTorque(-transform.right.x * rotationSpeed, ForceMode2D.Impulse);
 	}
 	
 	// Update is called once per frame
