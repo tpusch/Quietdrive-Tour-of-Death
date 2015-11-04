@@ -20,10 +20,11 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt("NumPlayers", numPlayers + 1);
     }
 
-    public void StartGame()
+    public void StartGame( int numPlayers)
     {
+        PlayerPrefs.SetInt("NumPlayers", numPlayers);
+
         Application.LoadLevel("Game");
         Time.timeScale = 1.0f;
     }
-
 }
