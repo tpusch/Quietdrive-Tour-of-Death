@@ -103,12 +103,29 @@ namespace UnityStandardAssets._2D
         private void Flip()
         {
             // Switch the way the player is labelled as facing.
-            m_FacingRight = !m_FacingRight;
 
-            // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            //// Multiply the player's x local scale by -1.
+            //Vector3 theScale = transform.localScale;
+            //theScale.x *= -1;
+            //transform.localScale = theScale;
+
+            Vector3 newRotation = Vector3.zero;
+            Debug.Log(newRotation);
+            Debug.Log(transform.rotation.y);
+
+            if (m_FacingRight)
+            {
+                newRotation.y = 180;
+            }
+            else
+            {
+                newRotation.y = 0;
+            }
+
+            Debug.Log(newRotation);
+            transform.eulerAngles = newRotation;
+
+            m_FacingRight = !m_FacingRight;
         }
     }
 }
