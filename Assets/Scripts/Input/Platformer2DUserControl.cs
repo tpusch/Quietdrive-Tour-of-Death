@@ -10,6 +10,8 @@ namespace UnityStandardAssets._2D
         protected bool m_Jump;
 
         protected BottleThrower combat;
+		[SerializeField]
+		AudioClip sound;
 
         private void Awake()
         {
@@ -27,7 +29,8 @@ namespace UnityStandardAssets._2D
             }
             if (Input.GetKeyDown(KeyCode.Space) && combat)
             {
-                combat.Attack(transform.localScale.x);
+				combat.Attack(transform.localScale.x);
+				SFXManager.Instance.playSound(sound);
             }
         }
 
