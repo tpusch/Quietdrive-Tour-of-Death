@@ -5,6 +5,9 @@ using System.Collections;
 public class Destroyable : MonoBehaviour {
 
     [SerializeField]
+    AudioClip deathClip;
+
+    [SerializeField]
     float health;
 
 	// Use this for initialization
@@ -26,9 +29,8 @@ public class Destroyable : MonoBehaviour {
         }
 
         if (health <= 0)
-        {
+        {   
             GameObject.Destroy(gameObject);
         }
     }
-
 }
