@@ -9,12 +9,14 @@ namespace UnityStandardAssets._2D
         protected PlatformerCharacter2D m_Character;
         protected bool m_Jump;
 
-        protected Combat combat;
+        protected BottleThrower combat;
+		[SerializeField]
+		AudioClip sound;
 
         private void Awake()
         {
             m_Character = GetComponent<PlatformerCharacter2D>();
-            combat = GetComponent<Combat>();
+            combat = GetComponent<BottleThrower>();
         }
 
 
@@ -27,7 +29,8 @@ namespace UnityStandardAssets._2D
             }
             if (Input.GetKeyDown(KeyCode.Space) && combat)
             {
-                combat.Attack(transform.localScale.x);
+				combat.Attack(transform.localScale.x);
+				SFXManager.Instance.playSound(sound);
             }
         }
 
