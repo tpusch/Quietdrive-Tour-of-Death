@@ -13,7 +13,11 @@ public class BasicAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        combat.Attack(transform.forward.x);
+        if (combat)
+        {
+            combat.Attack(transform.forward.x);
+        }
+        
 	}
 
 
