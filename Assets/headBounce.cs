@@ -34,7 +34,8 @@ public class headBounce : MonoBehaviour {
             {
                 GameObject obj;
                 obj = GameObject.Instantiate(itemToSpawn, transform.position, Quaternion.identity) as GameObject;
-                obj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+
+                //obj.GetComponent<Rigidbody2D>().AddForce(Random)
             }
             
         }
