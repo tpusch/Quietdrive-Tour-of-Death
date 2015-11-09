@@ -13,8 +13,8 @@ public class grab_coin : MonoBehaviour {
         
         /*if (coll.gameObject.tag == "Player")
             Destroy(coll.gameObject);*/
-        if (coll.gameObject.tag == "coin")
-            Destroy(coll.gameObject);
+        if (coll.gameObject.tag == "Player")
+            Destroy(gameObject);
 
     }
 

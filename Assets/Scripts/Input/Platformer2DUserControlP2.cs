@@ -24,6 +24,7 @@ namespace UnityStandardAssets._2D
             }
             if (Input.GetKeyDown(KeyCode.Keypad0) && combat)
             {
+
                 combat.Attack(transform.localScale.x);
             }
         }

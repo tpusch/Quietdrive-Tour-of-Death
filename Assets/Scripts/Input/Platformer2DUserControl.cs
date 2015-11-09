@@ -27,21 +27,24 @@ namespace UnityStandardAssets._2D
                 // Read the jump input in Update so button presses aren't missed.
                 m_Jump = Input.GetButtonDown("Jump");
             }
-            if (Input.GetKeyDown(KeyCode.Space) && combat)
-            {
-				combat.Attack(transform.localScale.x);
-				SFXManager.Instance.playSound(sound);
-            }
+
         }
 
 
         private void FixedUpdate()
         {
             // Read the inputs.
-            bool crouch = Input.GetKey(KeyCode.S);
+            //bool crouch = Input.GetKey(KeyCode.S);
             float h = Input.GetAxis("Horizontal");
+			bool attack = false;
+			if (Input.GetKeyDown(KeyCode.Space) && combat)
+			{
+				attack = true;
+				//combat.Attack(transform.localScale.x);
+				//SFXManager.Instance.playSound(sound);
+			}
             // Pass all parameters to the character control script.
-            m_Character.Move(h, crouch, m_Jump);
+            m_Character.Move(h, attack, m_Jump);
             m_Jump = false;
         }
     }
