@@ -16,7 +16,7 @@ public class grab_coin : MonoBehaviour {
         lifeTimer = 0;
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         
         /*if (coll.gameObject.tag == "Player")
