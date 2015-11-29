@@ -22,15 +22,35 @@ public class Destroyable : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D hit)
     {
+        if (hit.gameObject.tag == "Player")
+        {
+            UnityStandardAssets._2D.PlatformerCharacter2D player = hit.gameObject.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>();
+            if (player.Attacking)
+            {
+                Damage(player.AttackDamage);
+            }
+        }
+        
         AttackObject hitter = hit.gameObject.GetComponent<AttackObject>();
+        
         if (hitter)
         {
-            health -= hitter.Damage;
+            Damage(hitter.Damage);            
         }
 
+
+
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage;
+
         if (health <= 0)
-        {   
-            GameObject.Destroy(gameObject);
+        {
+            SFXManager.Instance.playSound(deathClip);
+            GameManager.Destroy(gameObject);
         }
     }
+
 }

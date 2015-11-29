@@ -11,7 +11,7 @@ namespace UnityStandardAssets._2D
         private void Awake()
         {
             m_Character = GetComponent<PlatformerCharacter2D>();
-            combat = GetComponent<BottleThrower>();
+            combat = GetComponent<Combat>();
         }
 
 
@@ -22,21 +22,22 @@ namespace UnityStandardAssets._2D
                 // Read the jump input in Update so button presses aren't missed.
                 m_Jump = Input.GetButtonDown("JumpP2");
             }
-            if (Input.GetKeyDown(KeyCode.Keypad0) && combat)
-            {
-
-                combat.Attack(transform.localScale.x);
-            }
         }
 
 
         private void FixedUpdate()
         {
             // Read the inputs.
-            bool crouch = Input.GetKey(KeyCode.DownArrow);
+            //bool crouch = Input.GetKey(KeyCode.DownArrow);
             float h = Input.GetAxis("HorizontalP2");
+            bool attack = false;
+            if (Input.GetKeyDown(KeyCode.Keypad0) && combat)
+            {
+                attack = true;
+                combat.Attack(transform.localScale.x, .1f);
+            }
             // Pass all parameters to the character control script.
-            m_Character.Move(h, crouch, m_Jump);
+            m_Character.Move(h, attack, m_Jump);
             m_Jump = false;
         }
     }

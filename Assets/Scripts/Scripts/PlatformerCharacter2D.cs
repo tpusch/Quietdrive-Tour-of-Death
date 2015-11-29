@@ -5,9 +5,10 @@ namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : MonoBehaviour
     {
-        [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
+        [SerializeField] private float m_MaxSpeed = 10f;                    // Thefastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-        //
+        [SerializeField]
+        public float AttackDamage = 100f;
 
 		[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
@@ -16,11 +17,25 @@ namespace UnityStandardAssets._2D
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
+        public bool Grounded
+        {
+            get { return m_Grounded; }
+        }
+        [SerializeField]
+        private bool m_Attacking;
+        public bool Attacking
+        {
+            get { return m_Attacking; }
+        }
+
         private Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+
+        [SerializeField]
+        AudioClip attackSound;
 
         private void Awake()
         {
@@ -56,6 +71,12 @@ namespace UnityStandardAssets._2D
 
             // Set whether or not the character is crouching in the animator
             m_Anim.SetBool("Attack", attack);
+            m_Attacking = m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+            //TODO: only on first whip
+            if (attack && attackSound)
+            {
+                SFXManager.Instance.playSound(attackSound);
+            }
 
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl)

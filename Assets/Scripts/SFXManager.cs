@@ -8,6 +8,9 @@ public class SFXManager: MonoBehaviour {
 	[SerializeField]
 	AudioSource source;
 
+    [SerializeField]
+    AudioClip BGmusic;
+
 	public static SFXManager Instance{
 		get{ return instance; }
 		private set{ instance = value; }
@@ -15,12 +18,17 @@ public class SFXManager: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        source.clip = BGmusic;
+        source.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (!source.isPlaying)
+        {
+            source.clip = BGmusic;
+            source.Play();
+        }
 	}
 
 	void Awake() {

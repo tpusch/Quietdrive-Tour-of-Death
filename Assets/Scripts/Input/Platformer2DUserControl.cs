@@ -9,14 +9,12 @@ namespace UnityStandardAssets._2D
         protected PlatformerCharacter2D m_Character;
         protected bool m_Jump;
 
-        protected BottleThrower combat;
-		[SerializeField]
-		AudioClip sound;
+        protected Combat combat;
 
         private void Awake()
         {
             m_Character = GetComponent<PlatformerCharacter2D>();
-            combat = GetComponent<BottleThrower>();
+            combat = GetComponent<Combat>();
         }
 
 

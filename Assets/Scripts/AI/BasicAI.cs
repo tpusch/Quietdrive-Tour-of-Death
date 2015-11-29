@@ -3,27 +3,62 @@ using System.Collections;
 
 public class BasicAI : MonoBehaviour {
 
-    BottleThrower combat;
-    	
-	void Awake () 
+    GameObject[] players;
+    float distToPlayer;
+    
+    protected bool facingRight = true;
+    protected GameObject closestPlayer;
+
+	protected virtual void Awake () 
     {
-        combat = GetComponent<BottleThrower>();
+        players = GameObject.FindGameObjectsWithTag("Player");
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	protected virtual void Update () 
     {
-        if (combat)
-        {
-            combat.Attack(transform.forward.x);
-        }
-        
+        FindClosestPlayer();
+        LookAtPlayer();
 	}
 
 
-    void FindPlayer()
+    void FindClosestPlayer()
     {
-
+        distToPlayer = float.MaxValue;
+        for (int i = 0; i < players.Length; i++)
+        {            
+            float newDist = Vector3.Distance(transform.position, players[i].transform.position);
+            if (newDist < distToPlayer)
+            {
+                distToPlayer = newDist;
+                closestPlayer = players[i];
+            }
+        }
     }
 
+    void LookAtPlayer()
+    {
+        Vector3 toPlayer = closestPlayer.transform.position - transform.position;
+        if (toPlayer.x <= 0 && facingRight)
+        {
+            Flip();
+        }
+        else if(toPlayer.x > 0 && !facingRight)
+        {
+            Flip();
+        }
+    }
+
+
+    private void Flip()
+    {
+        // Switch the way the player is labelled as facing.
+
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+
+        facingRight = !facingRight;
+    }
 }

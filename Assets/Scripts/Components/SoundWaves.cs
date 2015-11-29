@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BottleThrower : Combat {
+public class SoundWaves : Combat {
 
     [SerializeField]
-    AttackObject Bottle;
+    AttackObject Waves;
 
     [SerializeField]
     Transform attackOrigin;
@@ -41,6 +41,18 @@ public class BottleThrower : Combat {
         }
 	}
 
+
+    public override void Attack(float facing, float delay)
+    {
+        StartCoroutine(DelayedAttack(facing, delay));
+    }
+
+    IEnumerator DelayedAttack(float facing, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Attack(facing);
+    }
+
     public override void Attack(float facing)
     {
         if (canAttack)
@@ -50,20 +62,32 @@ public class BottleThrower : Combat {
         }
     }
 
+    
+
+    public void Attack(Vector3 forward, Vector3 targetPosition)
+    {
+        if (canAttack)
+        {
+            AttackObject attack = CreateAttack(forward.x);
+            CalculatePower(targetPosition);
+            ThrowAttack(attack, -1);
+        }
+    }
+
     AttackObject CreateAttack(float facing)
     {
-        AttackObject attack = GameObject.Instantiate(Bottle, attackOrigin.position, transform.rotation) as AttackObject;
+        AttackObject attack = GameObject.Instantiate(Waves, attackOrigin.position, transform.rotation) as AttackObject;
         if (facing > 0)
         {
             // Multiply the player's x local scale by -1.
             Vector3 rotation = attack.transform.rotation.eulerAngles;
-            rotation.y = 180.0f;
+            rotation.y = 0.0f;
             attack.transform.rotation = Quaternion.Euler(rotation);
         }
         else
         {
             Vector3 rotation = attack.transform.rotation.eulerAngles;
-            rotation.y = 0.0f;
+            rotation.y = 180.0f;
             attack.transform.rotation = Quaternion.Euler(rotation);            
         }
         canAttack = false;
