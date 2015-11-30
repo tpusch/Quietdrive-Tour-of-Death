@@ -31,7 +31,7 @@ namespace UnityStandardAssets._2D
             //bool crouch = Input.GetKey(KeyCode.DownArrow);
             float h = Input.GetAxis("HorizontalP2");
             bool attack = false;
-            if (Input.GetKeyDown(KeyCode.Keypad0) && combat)
+            if ((Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.RightControl)) && combat)
             {
                 attack = true;
                 combat.Attack(transform.localScale.x, .1f);

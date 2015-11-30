@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour {
     {
         PlayerPrefs.SetInt("NumPlayers", numPlayers);
 
-        Application.LoadLevel("Game");
+        Application.LoadLevel("Game 1");
         Time.timeScale = 1.0f;
     }
 }

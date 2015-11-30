@@ -49,7 +49,14 @@ public class Destroyable : MonoBehaviour {
         if (health <= 0)
         {
             SFXManager.Instance.playSound(deathClip);
-            GameManager.Destroy(gameObject);
+            if (gameObject.tag == "Player")
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                GameManager.Destroy(gameObject);
+            }
         }
     }
 

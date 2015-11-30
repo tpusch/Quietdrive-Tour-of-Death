@@ -39,6 +39,13 @@ public class CameraMovement : MonoBehaviour {
                 numPlayers++;
             }
         }
+
+        if (numPlayers == 0)
+        {
+            GameManager.Instance.EndGame(false);
+            return;
+        }
+
         newPos.x = newX / numPlayers;
 
         if (newPos.x != transform.position.x)

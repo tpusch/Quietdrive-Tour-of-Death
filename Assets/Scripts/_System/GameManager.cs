@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     GameObject winPanel;
 
+    [SerializeField]
+    GameObject losePanel;
+
     int numPlayers;
        
     public static GameManager Instance{ get; private set;}
@@ -74,7 +77,8 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-
+            losePanel.SetActive(true);
+            Time.timeScale = 0.0f;
         }
     }
 
