@@ -16,6 +16,7 @@ public class SFXManager: MonoBehaviour {
     float musicVolume;
 
 
+
 	public static SFXManager Instance{
 		get{ return instance; }
 		private set{ instance = value; }
@@ -48,6 +49,7 @@ public class SFXManager: MonoBehaviour {
     {
         if (!source.isPlaying)
         {
+			source.pitch = 0.5f;
             source.clip = BGmusic;
             source.volume = musicVolume / 100;
             source.Play();
@@ -55,9 +57,9 @@ public class SFXManager: MonoBehaviour {
 
     }
 
-	public void playSound(AudioClip clip){
+	public void playSound(AudioClip clip, float volume = 100){
         
-		source.PlayOneShot (clip, 1);
+		source.PlayOneShot (clip, volume/100);
         
 	}
 }

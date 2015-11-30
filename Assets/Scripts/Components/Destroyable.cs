@@ -24,6 +24,7 @@ public class Destroyable : MonoBehaviour {
     {
         if (hit.gameObject.tag == "Player")
         {
+			if(gameObject.tag == "Player") return;
             UnityStandardAssets._2D.PlatformerCharacter2D player = hit.gameObject.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>();
             if (player.Attacking)
             {

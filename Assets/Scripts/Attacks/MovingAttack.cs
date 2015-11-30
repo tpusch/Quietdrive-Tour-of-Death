@@ -9,6 +9,9 @@ public class MovingAttack : AttackObject {
     float verticalSpeed;
     [SerializeField]
     float rotationSpeed;
+	[SerializeField]
+	float lifeTime = 0.0f;
+	float timeAlive = 0.0f;
 
     Rigidbody2D physics;
     void Awake()
@@ -31,6 +34,14 @@ public class MovingAttack : AttackObject {
 	protected override void Update () 
     {
         base.Update();
+
+		if (lifeTime != 0.0f) {
+			if(timeAlive > lifeTime){
+				Destroy(gameObject);
+			}else{
+				timeAlive += Time.deltaTime;
+			}
+		}
     }
 
     void Move()

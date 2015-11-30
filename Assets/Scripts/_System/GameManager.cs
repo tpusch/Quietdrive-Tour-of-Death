@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour {
         GameObject groundPieces = new GameObject("GroundPieces");
         for (int i = -10; i < groundLength; i++)
         {
-            GameObject piece = GameObject.Instantiate(groundPrefab, new Vector3(i*5.0f, -7.5f, 0.0f), Quaternion.identity) as GameObject;
-            piece.transform.SetParent(groundPieces.transform);
+            //GameObject piece = GameObject.Instantiate(groundPrefab, new Vector3(i*5.0f, -7.5f, 0.0f), Quaternion.identity) as GameObject;
+            //piece.transform.SetParent(groundPieces.transform);
         }
         //background
         GameObject backgrounds = new GameObject("Backgrounds");

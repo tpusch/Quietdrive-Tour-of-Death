@@ -9,6 +9,9 @@ public class grab_coin : MonoBehaviour {
     [SerializeField]
     AudioClip coinSound;
 
+	[SerializeField]
+	float volume = 100;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -27,7 +30,7 @@ public class grab_coin : MonoBehaviour {
 
         if (coll.gameObject.tag == "Player" && lifeTimer > 1)
         {
-            SFXManager.Instance.playSound(coinSound);
+            SFXManager.Instance.playSound(coinSound, volume);
             Destroy(gameObject);
         }
 

@@ -11,9 +11,12 @@ public class BasicAI : MonoBehaviour {
 
 	protected virtual void Awake () 
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
 	}
-	
+
+	protected virtual void Start(){
+		
+		players = GameObject.FindGameObjectsWithTag("Player");
+	}
 	// Update is called once per frame
 	protected virtual void Update () 
     {

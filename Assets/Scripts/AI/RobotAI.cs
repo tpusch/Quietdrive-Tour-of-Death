@@ -15,6 +15,11 @@ public class RobotAI : BasicAI {
         timeSinceAttack = attackDelay;
     }
 
+	protected override void Start ()
+	{
+		base.Start ();
+	}
+
 	// Update is called once per frame
 	protected override void Update () 
     {
