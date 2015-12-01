@@ -70,14 +70,14 @@ namespace UnityStandardAssets._2D
         {
 
             // Set whether or not the character is crouching in the animator
-            m_Anim.SetBool("Attack", attack);
-            m_Attacking = m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack");
-            //TODO: only on first whip
-            if (attack && attackSound)
-            {
-                SFXManager.Instance.playSound(attackSound);
-            }
+			
+			m_Anim.SetBool("Attack", attack);
+			m_Attacking = m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+			//TODO: only on first whip
+			if (attack && attackSound) {
+				//SFXManager.Instance.playSound (attackSound);
 
+			}
             //only control the player if grounded or airControl is turned on
             if (m_Grounded || m_AirControl)
             {
@@ -101,7 +101,17 @@ namespace UnityStandardAssets._2D
                 }
             }
             // If the player should jump...
-            if (m_Grounded && jump && m_Anim.GetBool("Ground"))
+			if (!m_Grounded && attack) {
+				m_Anim.SetBool("Attack", attack);
+				m_Anim.SetBool("Grounded", attack);
+				m_Attacking = m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+				//TODO: only on first whip
+				if (attack && attackSound)
+				{
+					SFXManager.Instance.playSound(attackSound);
+				}
+			}
+            else if (m_Grounded && jump && m_Anim.GetBool("Ground") && !m_Attacking)
             {
                 // Add a vertical force to the player.
                 m_Grounded = false;

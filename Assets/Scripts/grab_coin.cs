@@ -28,7 +28,7 @@ public class grab_coin : MonoBehaviour {
         /*if (coll.gameObject.tag == "Player")
             Destroy(coll.gameObject);*/
 
-        if (coll.gameObject.tag == "Player" && lifeTimer > 1)
+        if (coll.gameObject.tag == "Player" && lifeTimer > .25f)
         {
             SFXManager.Instance.playSound(coinSound, volume);
             Destroy(gameObject);
