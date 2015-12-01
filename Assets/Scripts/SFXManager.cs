@@ -49,7 +49,7 @@ public class SFXManager: MonoBehaviour {
     {
         if (!source.isPlaying)
         {
-			source.pitch = 0.5f;
+			source.pitch = 1.0f;
             source.clip = BGmusic;
             source.volume = musicVolume / 100;
             source.Play();

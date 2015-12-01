@@ -75,7 +75,7 @@ namespace UnityStandardAssets._2D
 			m_Attacking = m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack");
 			//TODO: only on first whip
 			if (attack && attackSound) {
-				//SFXManager.Instance.playSound (attackSound);
+				SFXManager.Instance.playSound (attackSound);
 
 			}
             //only control the player if grounded or airControl is turned on
