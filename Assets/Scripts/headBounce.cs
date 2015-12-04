@@ -35,7 +35,8 @@ public class headBounce : MonoBehaviour {
         if (player.gameObject.tag == "Player")
         {
             UnityStandardAssets._2D.PlatformerCharacter2D other = player.gameObject.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>();
-            if (!other.Grounded)
+            //if (!other.Grounded)
+			if(player.attachedRigidbody.velocity[1] < 0)
             {
                 player.attachedRigidbody.velocity = Vector2.zero;
                 player.attachedRigidbody.AddForce(jumpPower * player.transform.up, ForceMode2D.Impulse);

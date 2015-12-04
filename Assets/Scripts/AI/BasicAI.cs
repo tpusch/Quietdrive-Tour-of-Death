@@ -5,6 +5,7 @@ public class BasicAI : MonoBehaviour {
 
     GameObject[] players;
     float distToPlayer;
+	int count = 0;
     
     protected bool facingRight = true;
     protected GameObject closestPlayer;
@@ -42,14 +43,17 @@ public class BasicAI : MonoBehaviour {
     void LookAtPlayer()
     {
         Vector3 toPlayer = closestPlayer.transform.position - transform.position;
-        if (toPlayer.x <= 0 && facingRight)
-        {
-            Flip();
-        }
-        else if(toPlayer.x > 0 && !facingRight)
-        {
-            Flip();
-        }
+        if (toPlayer.x <= 0 && facingRight && count == 0) {
+			Flip ();
+			count++;
+		} else if (toPlayer.x > 0 && !facingRight && count == 0) {
+			Flip ();
+			count++;
+		} else if (count >= 60) {
+			count = 0;
+		} else {
+			count ++;
+		}
     }
 
 
