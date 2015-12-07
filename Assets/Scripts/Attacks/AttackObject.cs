@@ -12,7 +12,7 @@ public class AttackObject : MonoBehaviour {
     {
 	}
 
-    protected void OnCollisionEnter2D(Collision2D hit)
+    protected virtual void OnCollisionEnter2D(Collision2D hit)
     {
         GameObject.Destroy(gameObject);
     }

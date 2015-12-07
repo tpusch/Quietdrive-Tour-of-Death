@@ -9,10 +9,19 @@ public class Destroyable : MonoBehaviour {
 
     [SerializeField]
     float health;
+    float maxHealth;
+
+    void Awake()
+    {
+        maxHealth = health;       
+    }
 
 	// Use this for initialization
 	void Start () {
-	    
+        if (gameObject.tag == "Player" && gameObject.activeInHierarchy)
+        {
+            SetUIHealth();
+        }
 	}
 	
 	// Update is called once per frame
@@ -47,6 +56,8 @@ public class Destroyable : MonoBehaviour {
     {
         health -= damage;
 
+        
+
         if (health <= 0)
         {
             SFXManager.Instance.playSound(deathClip);
@@ -59,6 +70,23 @@ public class Destroyable : MonoBehaviour {
                 GameManager.Destroy(gameObject);
             }
         }
+
+        if (gameObject.tag == "Player")
+        {
+            SetUIHealth();   
+        }
+    }
+
+    void SetUIHealth()
+    {
+        UnityStandardAssets._2D.PlatformerCharacter2D player = gameObject.GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>();
+        UIManager.Instance.SetHealth(player.PlayerNum, Mathf.RoundToInt(health / maxHealth * 100 / 40));
+    }
+
+    public void Heal()
+    {
+        health = maxHealth;
+        SetUIHealth();
     }
 
 }

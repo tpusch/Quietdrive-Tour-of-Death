@@ -10,6 +10,8 @@ namespace UnityStandardAssets._2D
         [SerializeField]
         public float AttackDamage = 100f;
 
+        public int PlayerNum;
+
 		[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character

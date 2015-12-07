@@ -10,6 +10,7 @@ public class BasicAI : MonoBehaviour {
     protected bool facingRight = true;
     protected GameObject closestPlayer;
 
+
 	protected virtual void Awake () 
     {
 	}
@@ -24,7 +25,6 @@ public class BasicAI : MonoBehaviour {
         FindClosestPlayer();
         LookAtPlayer();
 	}
-
 
     void FindClosestPlayer()
     {
@@ -68,4 +68,6 @@ public class BasicAI : MonoBehaviour {
 
         facingRight = !facingRight;
     }
+
+    
 }
